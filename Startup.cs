@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using TheWistlist.Repositories;
+using TheWistlist.Services;
 
 namespace TheWistlist
 {
@@ -62,6 +63,8 @@ namespace TheWistlist
       //NOTE REGISTER SERVICES
       services.AddTransient<AccountService>();
       services.AddTransient<AccountRepository>();
+      services.AddTransient<WishesService>();
+      services.AddTransient<WishesRepository>();
     }
 
     private IDbConnection CreateDbConnection()
