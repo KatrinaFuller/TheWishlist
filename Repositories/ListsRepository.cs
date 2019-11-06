@@ -34,11 +34,22 @@ namespace TheWistlist.Repositories
       (@Name, @Description, @UserId)";
       return _db.ExecuteScalar<int>(sql, newList);
     }
+    public void EditList(List list)
+    {
+      string sql = @"
+      UPDATE lists
+      SET
+        name = @Name,
+        description = @Description
+      WHERE id = @id";
+      _db.Execute(sql, list);
+    }
 
     public void DeleteList(int id)
     {
       string sql = "DELETE FROM lists WHERE id = @id";
       _db.Execute(sql, new { id });
     }
+
   }
 }

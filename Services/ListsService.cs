@@ -38,6 +38,18 @@ namespace TheWistlist.Services
       newList.Id = id;
       return newList;
     }
+    public List EditList(List editList)
+    {
+      List list = _repo.GetListById(editList.Id);
+      if (list == null)
+      {
+        throw new Exception("Invalid Id");
+      }
+      list.Name = editList.Name;
+      list.Description = editList.Description;
+      _repo.EditList(list);
+      return list;
+    }
 
     public object DeleteList(int id)
     {
@@ -49,5 +61,6 @@ namespace TheWistlist.Services
       _repo.DeleteList(id);
       return "List has been deleted";
     }
+
   }
 }

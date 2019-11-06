@@ -58,6 +58,20 @@ namespace TheWistlist.Controllers
       }
     }
 
+    [HttpPut("{id}")]
+    public ActionResult<List> EditList([FromBody] List editList, int id)
+    {
+      try
+      {
+        editList.Id = id;
+        return Ok(_ls.EditList(editList));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [HttpDelete("{id}")]
     public ActionResult<int> DeleteList(int id)
     {
