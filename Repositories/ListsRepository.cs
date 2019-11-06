@@ -1,29 +1,44 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
+using Dapper;
 using TheWistlist.Models;
 
 namespace TheWistlist.Repositories
 {
   public class ListsRepository
   {
-    internal IEnumerable<List> GetListByUserId(string userId)
+    private readonly IDbConnection _db;
+    public ListsRepository(IDbConnection db)
     {
-      throw new NotImplementedException();
+      _db = db;
+    }
+    public IEnumerable<List> GetListByUserId(string userId)
+    {
+      string sql = "SELECT * FROM lists WHERE userId = @userId";
+      return _db.Query<List>(sql, new { userId });
     }
 
-    internal List GetListById(int id)
+    public List GetListById(int id)
     {
-      throw new NotImplementedException();
+      string sql = "SELECT * FROM lists WHERE id = @id";
+      return _db.QueryFirstOrDefault<List>(sql, new { id });
     }
 
-    internal int CreateList(List newList)
+    public int CreateList(List newList)
     {
-      throw new NotImplementedException();
+      string sql = @"
+      INSERT INTO lists
+      (name, description, userId)
+      VALUES
+      (@Name, @Description, @UserId)";
+      return _db.ExecuteScalar<int>(sql, newList);
     }
 
-    internal void DeleteList(int id)
+    public void DeleteList(int id)
     {
-      throw new NotImplementedException();
+      string sql = "DELETE FROM lists WHERE id = @id";
+      _db.Execute(sql, new { id });
     }
   }
 }
