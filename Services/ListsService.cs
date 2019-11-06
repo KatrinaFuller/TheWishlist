@@ -1,28 +1,53 @@
 using System;
+using System.Collections.Generic;
 using TheWistlist.Models;
+using TheWistlist.Repositories;
 
 namespace TheWistlist.Services
 {
   public class ListsService
   {
-    internal object GetListByUserId(string id)
+    public readonly ListsRepository _repo;
+    public ListsService(ListsRepository repo)
     {
-      throw new NotImplementedException();
+      _repo = repo;
+    }
+    public IEnumerable<List> GetListByUserId(string userId)
+    {
+      IEnumerable<List> exists = _repo.GetListByUserId(userId);
+      if (exists == null)
+      {
+        throw new Exception("Invalid Id");
+      }
+      return exists;
     }
 
-    internal object GetListById(int id)
+    public object GetListById(int id)
     {
-      throw new NotImplementedException();
+      List exists = _repo.GetListById(id);
+      if (exists == null)
+      {
+        throw new Exception("Invalid Id");
+      }
+      return exists;
     }
 
-    internal object CreateList(List newList)
+    public object CreateList(List newList)
     {
-      throw new NotImplementedException();
+      int id = _repo.CreateList(newList);
+      newList.Id = id;
+      return newList;
     }
 
-    internal object DeleteList(int id)
+    public object DeleteList(int id)
     {
-      throw new NotImplementedException();
+      List exists = _repo.GetListById(id);
+      if (exists == null)
+      {
+        throw new Exception("Invalid Id");
+      }
+      _repo.DeleteList(id);
+      return "List has been deleted";
     }
   }
 }
