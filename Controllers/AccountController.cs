@@ -5,6 +5,7 @@ using TheWistlist.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TheWistlist.Services;
 
 namespace TheWistlist.Controllers
 {

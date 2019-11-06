@@ -2,7 +2,7 @@ using System;
 using TheWistlist.Repositories;
 using TheWistlist.Models;
 
-namespace TheWistlist
+namespace TheWistlist.Services
 {
   public class AccountService
   {
