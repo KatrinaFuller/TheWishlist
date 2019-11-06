@@ -16,7 +16,7 @@ namespace TheWistlist.Services
       _lrepo = lrepo;
       _wrepo = wrepo;
     }
-    public IEnumerable<List> GetListWishesByListId(int listId, string userId)
+    public IEnumerable<Wish> GetListWishesByListId(int listId, string userId)
     {
       return _repo.GetListWishesByListId(listId, userId);
     }
