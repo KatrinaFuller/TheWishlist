@@ -67,6 +67,8 @@ namespace TheWistlist
       services.AddTransient<WishesRepository>();
       services.AddTransient<ListsService>();
       services.AddTransient<ListsRepository>();
+      services.AddTransient<ListWishesService>();
+      services.AddTransient<ListWishesRepository>();
     }
 
     private IDbConnection CreateDbConnection()
