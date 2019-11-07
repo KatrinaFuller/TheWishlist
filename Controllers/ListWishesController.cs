@@ -17,7 +17,7 @@ namespace TheWistlist.Controllers
       _lws = lws;
     }
 
-    [HttpGet("{listId")]
+    [HttpGet("{listId}")]
     public ActionResult<IEnumerable<List>> GetListWishesByListId(int listId)
     {
       try
